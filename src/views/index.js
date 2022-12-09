@@ -1,4 +1,5 @@
 export * from './Home';
 export * from './Map';
-export * from './Posts';
+export * from './NotAvaliable';
 export * from './PhotosList';
+export * from './Posts';

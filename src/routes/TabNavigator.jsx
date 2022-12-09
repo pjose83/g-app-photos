@@ -2,7 +2,7 @@
 import { Dimensions, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Octicons } from '@expo/vector-icons';
-import { Map, Posts } from '../views';
+import { Map, Posts, NotAvaliable } from '../views';
 import { Header } from '../components';
 
 const { height } = Dimensions.get("window")
@@ -10,31 +10,11 @@ const { height } = Dimensions.get("window")
 const Tab = createBottomTabNavigator();
 
 const routes = [
-  {
-    name: "Posts",
-    component: Posts,
-    icon: "home"
-  },
-  {
-    name: "Map",
-    component: Map,
-    icon: "location"
-  },
-  // {
-  //   name: "Messages",
-  //   component: Home,
-  //   icon: "comment"
-  // },
-  // {
-  //   name: "Notifications",
-  //   component: Home,
-  //   icon: "bell"
-  // },
-  // {
-  //   name: "Profile",
-  //   component: Home,
-  //   icon: "person"
-  // }
+  { name: "Posts", component: Posts, icon: "home" },
+  { name: "Map", component: Map, icon: "location" },
+  { name: "Messages", component: NotAvaliable, icon: "comment" },
+  { name: "Notifications", component: NotAvaliable, icon: "bell" },
+  { name: "Profile", component: NotAvaliable, icon: "person" }
 ]
 
 export const TabNavigator = () => {
