@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import {
   StyleSheet,
   Text,
@@ -7,36 +7,31 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicatorBase
 } from 'react-native'
 import { store } from '../context/store'
 import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
+import { usePhotos } from '../hooks/usePhotos'
 import { getPhotos } from '../helpers/fetch'
 
 const { width, height } = Dimensions.get("window")
 
 export const PhotosList = () => {
-  const { listTitle, loading, effects: { setLoading } } = useContext(store)
+  const { listTitle } = useContext(store)
+  const {
+    currentPage,
+    photos,
+    loading,
+    loadPhotos,
+    loadPhotosCollection
+  } = usePhotos(getPhotos, listTitle)
 
-  const [photos, setPhotos] = useState([])
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const [fontsLoaded] = useFonts({
-    Kalam_700Bold
-  })
-
-  const handlePhotos = async () => {
-    setLoading(true)
-    const results = await getPhotos(currentPage, listTitle)
-    setPhotos([...photos, ...results])
-    setLoading(false)
-  }
-
-  const loadPhotos = () => setCurrentPage(page => page + 1)
+  const [fontsLoaded] = useFonts({ Kalam_700Bold })
 
   useEffect(() => {
-    handlePhotos()
-  },[currentPage])
+    loadPhotosCollection()
+  }, [currentPage])
 
   if (!fontsLoaded) return <></>
 
@@ -67,16 +62,7 @@ export const PhotosList = () => {
         onEndReached={loadPhotos}
         onEndReachedThreshold={0}
       />
-      {
-        loading
-          ? (
-            <ActivityIndicator
-              size="large"
-              color="#aaa"
-            />
-          )
-          : null
-      }
+      {loading ? <ActivityIndicator size="large" color="#aaa" /> : null}
     </View>
   )
 }
@@ -101,7 +87,7 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   photo: {
-    height: 170,
-    width: 110,
+    height: height * .25,
+    width: width * .27,
   }
 })

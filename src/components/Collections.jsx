@@ -25,7 +25,7 @@ export const Collections = () => {
 
 const styles = StyleSheet.create({
   collectionWrapper: {
-    height: height * .35,
+    height: height * .31,
     backgroundColor: "#F4DFCA",
     padding: 15,
     justifyContent: "space-between"

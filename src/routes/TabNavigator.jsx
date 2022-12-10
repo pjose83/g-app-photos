@@ -46,7 +46,7 @@ export const TabNavigator = () => {
 const styles = StyleSheet.create({
   navBar: {
     backgroundColor: "#F4DFCA",
-    paddingHorizontal: 20,
-    height: height * .12
+    paddingHorizontal: 10,
+    height: height * .08
   }
 })
