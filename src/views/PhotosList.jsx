@@ -8,7 +8,6 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
-  ActivityIndicatorBase
 } from 'react-native'
 import { store } from '../context/store'
 import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
@@ -89,5 +88,6 @@ const styles = StyleSheet.create({
   photo: {
     height: height * .25,
     width: width * .27,
+    borderRadius: 10
   }
 })

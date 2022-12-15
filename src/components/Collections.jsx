@@ -5,9 +5,7 @@ import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
 const { height } = Dimensions.get("window")
 
 export const Collections = () => {
-  const [fontsLoaded] = useFonts({
-    Kalam_700Bold
-  })
+  const [fontsLoaded] = useFonts({ Kalam_700Bold })
 
   if (!fontsLoaded) return <></>
   return (

@@ -1,8 +1,8 @@
+import { useContext } from 'react'
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
 import { useFonts, Kalam_400Regular } from '@expo-google-fonts/kalam'
 import { Link } from '@react-navigation/native'
 import { store } from '../context/store'
-import { useContext } from 'react'
 
 const listName = [
   "wedding",
@@ -17,9 +17,7 @@ const listName = [
 
 export const CarrouselCollection = () => {
   const { effects: { setListTitle } } = useContext(store)
-  const [fontsLoaded] = useFonts({
-    Kalam_400Regular
-  })
+  const [fontsLoaded] = useFonts({ Kalam_400Regular })
 
   if (!fontsLoaded) return <></>
 
@@ -32,7 +30,7 @@ export const CarrouselCollection = () => {
     >
       <View>
         <Image
-          source={{ uri: `https://maps-app1.s3.amazonaws.com/collections/${item}.jpg`}}
+          source={{ uri: `https://maps-app1.s3.amazonaws.com/collections/${item}.jpg` }}
           style={styles.imgCollection}
           resizeMode="stretch"
         />
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
   imgCollection: {
     width: 100,
     height: 100,
-    borderRadius: 10,
+    borderRadius: 10
   },
   titleCollection: {
     fontSize: 16,

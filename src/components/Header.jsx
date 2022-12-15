@@ -1,19 +1,11 @@
-import {
-  Dimensions,
-  Image,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native'
+import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import { useFonts, Jua_400Regular } from '@expo-google-fonts/jua'
 import Logo from '../../assets/header/logo.png'
 
 const { height } = Dimensions.get("window")
 
 export const Header = () => {
-  const [fontsLoaded] = useFonts({
-    Jua_400Regular
-  })
+  const [fontsLoaded] = useFonts({ Jua_400Regular })
 
   if (!fontsLoaded) return <></>
 

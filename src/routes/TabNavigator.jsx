@@ -4,6 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Octicons } from '@expo/vector-icons';
 import { Map, Posts, NotAvaliable } from '../views';
 import { Header } from '../components';
+import { useContext } from 'react';
+import { store } from '../context/store';
 
 const { height } = Dimensions.get("window")
 
@@ -18,6 +20,7 @@ const routes = [
 ]
 
 export const TabNavigator = () => {
+  const { effects: { goTop } } = useContext(store)
   const { Navigator, Screen } = Tab
   return (
     <Navigator
@@ -29,15 +32,18 @@ export const TabNavigator = () => {
       }}
     >
       {routes.map(({ name, component, icon }) => (
-          <Screen
-            key={name}
-            name={name}
-            component={component}
-            options={{
-              tabBarShowLabel: false,
-              tabBarIcon: ({ color }) => <Octicons name={icon} size={30} color={color} />
-            }}
-          />
+        <Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            tabBarShowLabel: false,
+            tabBarIcon: ({ color }) => <Octicons name={icon} size={30} color={color} />
+          }}
+          listeners={{
+            tabPress: name === "Posts" ? goTop : null
+          }}
+        />
       ))}
     </Navigator>
   );

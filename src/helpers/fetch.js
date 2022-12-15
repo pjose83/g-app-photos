@@ -14,7 +14,7 @@ export const getPhotos = async (currentPage, listTitle) => {
 
 export const getFeedPhotos = async () => {
   try {
-    const imgUrl = `https://api.unsplash.com/photos/random/?count=10&orientation=landscape&client_id=${ACCESS_KEY}`
+    const imgUrl = `https://api.unsplash.com/photos/random/?count=10&orientation=portrait&client_id=${ACCESS_KEY}`
 
     const getData = await fetch(imgUrl)
     const results = await getData.json()
