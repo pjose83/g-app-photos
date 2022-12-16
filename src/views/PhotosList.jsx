@@ -59,7 +59,7 @@ export const PhotosList = () => {
         numColumns={3}
         ItemSeparatorComponent={<View style={{ margin: 8}}/>}
         onEndReached={loadPhotos}
-        onEndReachedThreshold={0}
+        onEndReachedThreshold={.5}
       />
       {loading ? <ActivityIndicator size="large" color="#aaa" /> : null}
     </View>

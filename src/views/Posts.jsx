@@ -45,7 +45,7 @@ export const Posts = () => {
         keyExtractor={(item, index) => index}
         ItemSeparatorComponent={<View style={{ margin: 8 }}/>}
         onEndReached={loadPhotos}
-        onEndReachedThreshold={0}
+        onEndReachedThreshold={.5}
         showsVerticalScrollIndicator={false}
         ref={myListRef}
       />
