@@ -1,8 +1,5 @@
-import { useContext } from 'react'
-import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
-import { useFonts, Kalam_400Regular } from '@expo-google-fonts/kalam'
-import { Link } from '@react-navigation/native'
-import { store } from '../context/store'
+import { FlatList, View } from 'react-native'
+import { CollectionItem } from './CollectionItem'
 
 const listName = [
   "wedding",
@@ -16,30 +13,7 @@ const listName = [
 ]
 
 export const CarrouselCollection = () => {
-  const { effects: { setListTitle } } = useContext(store)
-  const [fontsLoaded] = useFonts({ Kalam_400Regular })
-
-  if (!fontsLoaded) return <></>
-
-  const onNextPage = name => () => setListTitle(name)
-
-  const renderCollections = ({ item }) => (
-    <Link
-      to={{ screen: 'PhotosList' }}
-      onPress={onNextPage(item)}
-    >
-      <View>
-        <Image
-          source={{ uri: `https://maps-app1.s3.amazonaws.com/collections/${item}.jpg` }}
-          style={styles.imgCollection}
-          resizeMode="stretch"
-        />
-        <Text style={styles.titleCollection}>
-          {item}
-        </Text>
-      </View>
-    </Link>
-  )
+  const renderCollections = ({ item }) => <CollectionItem item={item} />
 
   return (
     <View>
@@ -54,16 +28,3 @@ export const CarrouselCollection = () => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  imgCollection: {
-    width: 100,
-    height: 100,
-    borderRadius: 10
-  },
-  titleCollection: {
-    fontSize: 16,
-    textTransform: 'capitalize',
-    fontFamily: "Kalam_400Regular"
-  }
-})

@@ -1,34 +1,30 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
+import { StyleSheet, View } from 'react-native'
+import { StyledText } from '../theme/StyledText'
+import { colors } from '../theme/colors'
 
-export const NotAvaliable = () => {
-  const [fontsLoaded] = useFonts({
-    Kalam_700Bold
-  })
+export const NotAvaliable = () => (
+  <View style={styles.view}>
+    <StyledText
+      title
+      kalamBold
+      center
+      style={styles.text}
+    >
+      This feacture is not avaliable for the moment :(
+    </StyledText>
+  </View>
+)
 
-  if (!fontsLoaded) return <></>
-
-  return (
-    <View style={styles.view}>
-      <Text style={styles.text}>
-        This feacture is not avaliable for the moment :(
-      </Text>
-    </View>
-  )
-}
 
 const styles = StyleSheet.create({
   view: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#F4DFCA",
+    backgroundColor: colors.primary,
     paddingHorizontal: 20,
   },
   text: {
-    fontSize: 32,
-    textAlign: "center",
-    fontFamily: "Kalam_700Bold",
     textShadowColor: '#0007',
     textShadowOffset: {width: -3, height: 3},
     textShadowRadius: 15

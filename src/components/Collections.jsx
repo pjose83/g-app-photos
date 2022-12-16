@@ -1,35 +1,33 @@
-import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, View } from 'react-native'
+import { StyledText, colors } from '../theme'
 import { CarrouselCollection } from './CarrouselCollection'
-import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
 
 const { height } = Dimensions.get("window")
 
-export const Collections = () => {
-  const [fontsLoaded] = useFonts({ Kalam_700Bold })
+export const Collections = () => (
+  <View style={styles.collectionWrapper}>
+    <StyledText
+      kalamBold
+      big
+    >
+      My collections
+    </StyledText>
+    <CarrouselCollection />
+    <StyledText
+      kalamBold
+      big
+    >
+      Activity feed
+    </StyledText>
+  </View>
+)
 
-  if (!fontsLoaded) return <></>
-  return (
-    <View style={styles.collectionWrapper}>
-      <Text style={styles.collectionTitle}>
-        My collections
-      </Text>
-      <CarrouselCollection />
-      <Text style={styles.collectionTitle}>
-        Activity feed
-      </Text>
-    </View>
-  )
-}
 
 const styles = StyleSheet.create({
   collectionWrapper: {
     height: height * .31,
-    backgroundColor: "#F4DFCA",
+    backgroundColor: colors.primary,
     padding: 15,
     justifyContent: "space-between"
-  },
-  collectionTitle: {
-    fontFamily: "Kalam_700Bold",
-    fontSize: 18
   }
 })

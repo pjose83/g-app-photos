@@ -1,26 +1,26 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
-import { useFonts, Jua_400Regular } from '@expo-google-fonts/jua'
+import { Dimensions, Image, StyleSheet, View } from 'react-native'
+import { StyledText, colors } from '../theme'
 import Logo from '../../assets/header/logo.png'
 
 const { height } = Dimensions.get("window")
 
-export const Header = () => {
-  const [fontsLoaded] = useFonts({ Jua_400Regular })
+export const Header = () => (
+  <View style={styles.headerWrapper}>
+    <Image
+      source={Logo}
+      resizeMode="stretch"
+    />
+    <StyledText
+      juaRegular
+      big
+      color={colors.secondary}
+      style={styles.headerTitle}
+    >
+      PhotoSearch
+    </StyledText>
+  </View>
+)
 
-  if (!fontsLoaded) return <></>
-
-  return (
-    <View style={styles.headerWrapper}>
-      <Image
-        source={Logo}
-        resizeMode="stretch"
-      />
-      <Text style={styles.headerTitle}>
-        PhotoSearch
-      </Text>
-    </View>
-  )
-}
 
 const styles = StyleSheet.create({
   headerWrapper: {
@@ -30,9 +30,6 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   headerTitle: {
-    fontSize: 18,
-    paddingLeft: 15,
-    color: "#AB7E57",
-    fontFamily: "Jua_400Regular"
+    paddingLeft: 15
   }
 })

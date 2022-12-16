@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native'
 import { getFeedPhotos } from '../helpers/fetch'
-import { usePhotos } from '../hooks/usePhotos'
-import { Collections, ImgItem } from '../components'
+import { usePhotos } from '../hooks'
+import { ImgItem } from '../components'
 import { store } from '../context/store'
 
 export const Posts = () => {

@@ -1,39 +1,30 @@
 import {
   Image,
   StyleSheet,
-  Text,
   View,
   Dimensions,
   ImageBackground,
   Pressable
 } from 'react-native'
-import {
-  useFonts,
-  Kalam_700Bold,
-  Kalam_300Light,
-  Kalam_400Regular
-} from '@expo-google-fonts/kalam'
 import { Collections } from './Collections'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import like from '../../assets/like.png'
 import unliked from '../../assets/unliked.png'
 import Animated from 'react-native-reanimated'
-import { useLike } from '../hooks/useLike'
+import { useLike } from '../hooks'
+import { colors, StyledText } from '../theme'
 
 const { width, height } = Dimensions.get("window")
 
 const AnimatedImage = Animated.createAnimatedComponent(Image)
 
 export const ImgItem = ({ profilePic, author, location, img, desc, index }) => {
-  const [fontsLoaded] = useFonts({
-    Kalam_700Bold,
-    Kalam_300Light,
-    Kalam_400Regular
-  })
-
-  const { doubleTap, style, isLiked, handleUnlike } = useLike()
-
-  if (!fontsLoaded) return <></>
+  const {
+    doubleTap,
+    style,
+    isLiked,
+    handleUnlike
+  } = useLike()
 
   return (
     <>
@@ -46,17 +37,27 @@ export const ImgItem = ({ profilePic, author, location, img, desc, index }) => {
             resizeMode="cover"
           />
           <View style={styles.textWrapper}>
-            <Text style={styles.textName}>
+            <StyledText
+              kalamBold
+              regular
+            >
               {author || "Anonymous"}
-            </Text>
-            <Text style={styles.textLocation}>
+            </StyledText>
+            <StyledText
+              kalamLight
+              small
+            >
               From {location || "Somewhere..."}
-            </Text>
+            </StyledText>
           </View>
         </View>
-        <Text style={styles.textDesc}>
+        <StyledText
+          kalamRegular
+          regular
+          extraStyles={styles.textDesc}
+        >
           {desc || "No caption needed"}
-        </Text>
+        </StyledText>
         <ImageBackground
           source={{ uri: img }}
           style={styles.img}
@@ -106,23 +107,13 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 100,
     borderWidth: 2,
-    borderColor: "#aaa8"
+    borderColor: colors.tertiary
   },
   textWrapper: {
     paddingLeft: 10,
     justifyContent: "center"
   },
-  textName: {
-    fontFamily: "Kalam_700Bold",
-    fontSize: 16
-  },
-  textLocation: {
-    fontSize: 14,
-    fontFamily: "Kalam_300Light",
-  },
   textDesc: {
-    fontSize: 16,
-    fontFamily: "Kalam_400Regular",
     paddingLeft: 20,
     paddingBottom: 5
   },

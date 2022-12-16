@@ -6,6 +6,7 @@ import { Map, Posts, NotAvaliable } from '../views';
 import { Header } from '../components';
 import { useContext } from 'react';
 import { store } from '../context/store';
+import { colors } from '../theme';
 
 const { height } = Dimensions.get("window")
 
@@ -51,7 +52,7 @@ export const TabNavigator = () => {
 
 const styles = StyleSheet.create({
   navBar: {
-    backgroundColor: "#F4DFCA",
+    backgroundColor: colors.primary,
     paddingHorizontal: 10,
     height: height * .08
   }

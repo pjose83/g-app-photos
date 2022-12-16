@@ -1,7 +1,6 @@
 import { useContext, useEffect } from 'react'
 import {
   StyleSheet,
-  Text,
   View,
   Dimensions,
   ActivityIndicator,
@@ -10,9 +9,9 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import { store } from '../context/store'
-import { useFonts, Kalam_700Bold } from '@expo-google-fonts/kalam'
-import { usePhotos } from '../hooks/usePhotos'
+import { usePhotos } from '../hooks'
 import { getPhotos } from '../helpers/fetch'
+import { StyledText, colors } from '../theme'
 
 const { width, height } = Dimensions.get("window")
 
@@ -26,13 +25,9 @@ export const PhotosList = () => {
     loadPhotosCollection
   } = usePhotos(getPhotos, listTitle)
 
-  const [fontsLoaded] = useFonts({ Kalam_700Bold })
-
   useEffect(() => {
     loadPhotosCollection()
   }, [currentPage])
-
-  if (!fontsLoaded) return <></>
 
   const renderPhotos = ({ item }) => (
     <TouchableOpacity
@@ -49,9 +44,14 @@ export const PhotosList = () => {
 
   return (
     <View style={styles.view}>
-      <Text style={styles.title}>
+      <StyledText
+        kalamBold
+        center
+        title
+        style={styles.title}
+      >
         {listTitle}
-      </Text>
+      </StyledText>
       <FlatList
         data={photos}
         renderItem={renderPhotos}
@@ -69,13 +69,10 @@ export const PhotosList = () => {
 const styles = StyleSheet.create({
   view: {
     flex: 1,
-    backgroundColor: "#F4DFCA",
+    backgroundColor: colors.primary,
     padding: 20
   },
   title: {
-    textAlign: "center",
-    fontSize: 32,
-    fontFamily: "Kalam_700Bold",
     textTransform: 'capitalize',
     textShadowColor: '#0007',
     textShadowOffset: {width: -1, height: 2},
