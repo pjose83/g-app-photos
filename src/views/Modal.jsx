@@ -6,13 +6,13 @@ import {
   ModalExpo,
   TextInput,
   TouchableOpacity,
-  Dimensions,
-  Pressable
+  Dimensions
 } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 import { colors, StyledText } from '../theme'
 import { useContext } from 'react';
 import { store } from '../context/store';
+import { setData } from '../helpers/storage';
 
 const { width, height } = Dimensions.get("window")
 
@@ -21,20 +21,25 @@ export const Modal = ({ message }) => {
   const {
     inputText,
     editItem,
-    galleryImg,
+    loadData,
     effects:{
-      setGalleryImg,
-      setInputText
+      setInputText,
+      setLoadData
     }
   } = useContext(store)
 
-  const handleEditDesc = (editItem) => {
-    const newList = galleryImg.map(item => item.image === editItem ? { ...item, desc: inputText } : item)
-    setGalleryImg(newList)
+  const handleEditDesc = async (editItem) => {
+    try {
+      const newList = loadData.map(item => item.image === editItem ? { ...item, desc: inputText } : item)
+      await setData("galleryList", newList)
+      setLoadData(newList)
+    } catch (error) {
+      console.log("Error on handleEditDesc: ", error)
+    }
   }
 
   const onSaveEdit = () => {
-    handleEditDesc(editItem)
+    loadData && handleEditDesc(editItem)
     setIsModalVisible(!isModalVisible)
   }
 
@@ -47,7 +52,7 @@ export const Modal = ({ message }) => {
       onRequestClose={onCancelEdit}
       transparent
     >
-      <Pressable style={styles.modalBg} onPress={onCancelEdit}>
+      <View style={styles.modalBg}>
         <View style={styles.modalView}>
           <StyledText
             kalamBold
@@ -83,7 +88,7 @@ export const Modal = ({ message }) => {
             </TouchableOpacity>
           </View>
         </View>
-      </Pressable>
+      </View>
     </ModalExpo>
   )
 }
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
     elevation: 50
   },
   input: {
-    width: "100%",
+    width: "90%",
     borderBottomColor: colors.dark,
     borderBottomWidth: 1,
     fontSize: 16

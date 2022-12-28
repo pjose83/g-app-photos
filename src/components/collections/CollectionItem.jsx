@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { Image, StyleSheet, View } from 'react-native'
 import { Link } from '@react-navigation/native'
-import { store } from '../context/store'
-import { StyledText } from '../theme'
+import { store } from '../../context/store'
+import { StyledText } from '../../theme'
 
 export const CollectionItem = ({ item }) => {
   const { effects: { setListTitle } } = useContext(store)

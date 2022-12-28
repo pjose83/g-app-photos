@@ -1,22 +1,41 @@
-import { useContext } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native'
-import { HeaderProfile, MyPhotoItem } from '../components';
+import { useContext, useEffect,  } from 'react';
+import { StyleSheet, View, FlatList, Button } from 'react-native'
+import { HeaderProfile, PhotoItem } from '../components';
 import { StyledText } from '../theme';
 import { store } from '../context/store';
 import { Modal } from './Modal';
 import { useIsFocused } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const Profile = () => {
-  const { galleryImg, isModalVisible } = useContext(store)
+  const {
+    isModalVisible,
+    galleryImg,
+    loadData,
+    effects: {
+      loadPhotosList
+    }
+} = useContext(store)
   const isFocused = useIsFocused()
+
+  useEffect(() => {loadPhotosList()}, [galleryImg])
 
   const renderItems = ({ item }) => {
     const { desc, image } = item
-    return <MyPhotoItem description={desc} img={image} />
+    return <PhotoItem description={desc} img={image} />
+  }
+
+  const clearAll = async () => {
+    try {
+      await AsyncStorage.clear()
+    } catch(e) {
+      // clear error
+    }
   }
 
   return (
     <View style={styles.profileContainer}>
+      <Button title='restore data' onPress={clearAll}/>
       <HeaderProfile />
       <FlatList
         ListHeaderComponent={
@@ -29,7 +48,7 @@ export const Profile = () => {
             My Photos
           </StyledText>
         }
-        data={galleryImg}
+        data={loadData}
         renderItem={renderItems}
         keyExtractor={item => item.image}
       />

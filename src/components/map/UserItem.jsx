@@ -1,8 +1,8 @@
 import { Image, ImageBackground, StyleSheet, View } from 'react-native'
 import { Marker } from 'react-native-maps'
-import { users } from '../data/usersData'
-import ellipse from "../../assets/ellipse.png"
-import { StyledText, colors } from '../theme'
+import { users } from '../../data/usersData'
+import ellipse from "../../../assets/ellipse.png"
+import { StyledText, colors } from '../../theme'
 
 export const UserItem = () => (
   users.map(({ name, username, latitude, longitude, pro }) => (

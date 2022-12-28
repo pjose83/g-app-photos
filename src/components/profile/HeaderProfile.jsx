@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View, Dimensions, TouchableOpacity } from 'react-native'
-import { colors, StyledText } from '../theme'
+import { colors, StyledText } from '../../theme'
 import { HeaderProfileIcons } from './HeaderProfileIcons'
-import profilePic from '../../assets/profilePic.png'
+import profilePic from '../../../assets/profilePic.png'
 
 const { width } = Dimensions.get("window")
 

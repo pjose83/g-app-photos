@@ -1,9 +1,9 @@
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { colors, StyledText } from '../theme'
+import { colors, StyledText } from '../../theme'
 import { MaterialIcons } from '@expo/vector-icons';
-import { useImgOptions } from '../hooks';
+import { useImgOptions } from '../../hooks';
 
-export const MyPhotoOptions = ({ img, description }) => {
+export const PhotoOptions = ({ img, description }) => {
   const { shareImage, editImage, deleteImage } = useImgOptions(img)
 
   const profileButtons = [

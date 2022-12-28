@@ -1,4 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useRef, useState } from 'react';
+import { getData } from '../helpers/storage';
 
 export const store = createContext();
 
@@ -8,7 +10,17 @@ export const AppContext = ({ children }) => {
   const [isModalVisible, setIsModalVisible] = useState(false)
   const [inputText, setInputText] = useState("")
   const [editItem, setEditItem] = useState("")
+  const [loadData, setLoadData] = useState(null)
   const myListRef = useRef()
+
+  const loadPhotosList = async () => {
+    try {
+      const localData = await getData("galleryList")
+      setLoadData(localData)
+    } catch (error) {
+      console.log("Error on loadPhotosList: ", error)
+    }
+  }
 
   const goTop = () => {
     myListRef.current.scrollToIndex({ index: 0 })
@@ -20,7 +32,8 @@ export const AppContext = ({ children }) => {
     galleryImg,
     isModalVisible,
     inputText,
-    editItem
+    editItem,
+    loadData
   }
 
   const setState = () => {
@@ -30,7 +43,9 @@ export const AppContext = ({ children }) => {
       setGalleryImg,
       setIsModalVisible,
       setInputText,
-      setEditItem
+      setEditItem,
+      loadPhotosList,
+      setLoadData
     }
   }
 

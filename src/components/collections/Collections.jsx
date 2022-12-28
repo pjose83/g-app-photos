@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet, View } from 'react-native'
-import { StyledText, colors } from '../theme'
+import { StyledText, colors } from '../../theme'
 import { CarrouselCollection } from './CarrouselCollection'
 
 const { height } = Dimensions.get("window")

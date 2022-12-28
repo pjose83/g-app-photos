@@ -1,15 +1,17 @@
 import { useContext } from "react"
 import { shareAsync } from "expo-sharing"
 import { store } from "../context/store"
+import { setData } from "../helpers/storage"
 
 export const useImgOptions = (img) => {
   const {
-    galleryImg,
+    loadData,
     effects: {
       setGalleryImg,
       setIsModalVisible,
       setInputText,
-      setEditItem
+      setEditItem,
+      setLoadData
     }
 } = useContext(store)
 
@@ -21,9 +23,10 @@ export const useImgOptions = (img) => {
     }
   }
 
-  const deleteImage = (itemToDelete) => {
-    const newImagesList = galleryImg.filter(item => item.image !== itemToDelete)
-    setGalleryImg(newImagesList)
+  const deleteImage = async (itemToDelete) => {
+    const newImagesList = loadData.filter(item => item.image !== itemToDelete)
+    await setData("galleryList", newImagesList)
+    setLoadData(newImagesList)
   }
 
   const editImage = (description) => {

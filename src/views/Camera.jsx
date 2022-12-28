@@ -1,5 +1,5 @@
 
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StyleSheet, View, Dimensions } from 'react-native'
 import { Camera as CameraExpo } from 'expo-camera'
 import { requestPermissionsAsync } from 'expo-media-library'
@@ -8,12 +8,10 @@ import { useIsFocused } from '@react-navigation/native'
 import { CameraPicture } from './CameraPicture'
 import { useCamera } from '../hooks'
 import { CameraButtons } from '../components'
-import { store } from '../context/store'
 
 const { width } = Dimensions.get("window")
 
 export const Camera = () => {
-  const { galleryImg } = useContext(store)
   const [hasPermission, setHasPermission] = useState(false)
   const isFocused = useIsFocused()
   const {
@@ -22,10 +20,11 @@ export const Camera = () => {
     flash,
     cameraRef,
     takePicture,
-    deleteImage,
-    saveImage,
     toggleCameraFlash,
-    toggleCameraType
+    toggleCameraType,
+    saveImage,
+    addDescription,
+    deleteImage
   } = useCamera()
 
   useEffect(() => {
@@ -56,13 +55,13 @@ export const Camera = () => {
 
   return (
     isFocused && (
-      image ? (
-        <CameraPicture
+      image
+      ? <CameraPicture
           img={image}
-          saveImg={saveImage}
-          deleteImg={deleteImage}
+          saveImage={saveImage}
+          addDescription={addDescription}
+          deleteImage={deleteImage}
         />
-      )
       : (
         <CameraExpo
           ratio="16:9"

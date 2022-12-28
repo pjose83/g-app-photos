@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
-import { profileData } from '../data/profileData';
-import { colors, StyledText } from '../theme';
+import { profileData } from '../../data/profileData';
+import { colors, StyledText } from '../../theme';
 
 export const HeaderProfileIcons = () => {
   return (

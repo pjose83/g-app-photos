@@ -6,13 +6,13 @@ import {
   ImageBackground,
   Pressable
 } from 'react-native'
-import { Collections } from './Collections'
+import { Collections } from '../collections/Collections'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import like from '../../assets/like.png'
-import unliked from '../../assets/unliked.png'
+import like from '../../../assets/like.png'
+import unliked from '../../../assets/unliked.png'
 import Animated from 'react-native-reanimated'
-import { useLike } from '../hooks'
-import { colors, StyledText } from '../theme'
+import { useLike } from '../../hooks'
+import { colors, StyledText } from '../../theme'
 
 const { width, height } = Dimensions.get("window")
 

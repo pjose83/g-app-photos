@@ -1,6 +1,6 @@
 import { Dimensions, Image, StyleSheet, View } from 'react-native'
-import { StyledText, colors } from '../theme'
-import Logo from '../../assets/header/logo.png'
+import { StyledText, colors } from '../../theme'
+import Logo from '../../../assets/header/logo.png'
 
 const { height } = Dimensions.get("window")
 

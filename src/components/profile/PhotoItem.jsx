@@ -1,10 +1,8 @@
-import { StyleSheet, View, Dimensions, Image } from 'react-native'
-import { colors, StyledText } from '../theme'
-import { MyPhotoOptions } from './MyPhotoOptions';
+import { StyleSheet, View, Image } from 'react-native'
+import { colors, StyledText } from '../../theme'
+import { PhotoOptions } from './PhotoOptions';
 
-const { width, height } = Dimensions.get("window")
-
-export const MyPhotoItem = ({ img, description }) => {
+export const PhotoItem = ({ img, description }) => {
   return (
     <View style={styles.listWrapper}>
         <Image
@@ -18,7 +16,7 @@ export const MyPhotoItem = ({ img, description }) => {
         >
           {description}
         </StyledText>
-        <MyPhotoOptions img={img} description={description} />
+        <PhotoOptions img={img} description={description} />
       </View>
     </View>
   )
