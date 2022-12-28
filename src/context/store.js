@@ -1,9 +1,13 @@
-import { createContext, useEffect, useRef, useState } from 'react';
+import { createContext, useRef, useState } from 'react';
 
 export const store = createContext();
 
 export const AppContext = ({ children }) => {
   const [listTitle, setListTitle] = useState("")
+  const [galleryImg, setGalleryImg] = useState([])
+  const [isModalVisible, setIsModalVisible] = useState(false)
+  const [inputText, setInputText] = useState("")
+  const [editItem, setEditItem] = useState("")
   const myListRef = useRef()
 
   const goTop = () => {
@@ -12,13 +16,21 @@ export const AppContext = ({ children }) => {
 
   const INITIAL_STATE = {
     listTitle,
-    myListRef
+    myListRef,
+    galleryImg,
+    isModalVisible,
+    inputText,
+    editItem
   }
 
   const setState = () => {
     return {
       setListTitle,
-      goTop
+      goTop,
+      setGalleryImg,
+      setIsModalVisible,
+      setInputText,
+      setEditItem
     }
   }
 

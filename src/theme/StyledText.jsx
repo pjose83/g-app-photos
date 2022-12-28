@@ -1,6 +1,7 @@
 import { StyleSheet, Text } from 'react-native'
 import { useFonts, Kalam_300Light, Kalam_400Regular, Kalam_700Bold } from '@expo-google-fonts/kalam'
 import { Jua_400Regular } from '@expo-google-fonts/jua'
+import { colors } from './colors'
 
 export const StyledText = ({
   children,
@@ -8,13 +9,14 @@ export const StyledText = ({
   kalamRegular,
   kalamBold,
   juaRegular,
-  color,
+  color = colors.dark,
   extraStyles,
   small,
   regular,
   big,
   title,
-  center
+  center,
+  capitalize
 }) => {
   const [fontsLoaded] = useFonts({
     Kalam_300Light,
@@ -36,6 +38,7 @@ export const StyledText = ({
     title && styles.title,
     center && styles.center,
     { color },
+    capitalize && styles.capitalize,
     extraStyles
   ]
 
@@ -69,5 +72,8 @@ const styles = StyleSheet.create({
   },
   center: {
     textAlign: "center"
+  },
+  capitalize: {
+    textTransform: 'capitalize'
   }
 })

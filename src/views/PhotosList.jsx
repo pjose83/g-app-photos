@@ -43,11 +43,12 @@ export const PhotosList = () => {
   )
 
   return (
-    <View style={styles.view}>
+    <View style={styles.wrapper}>
       <StyledText
         kalamBold
         center
         title
+        capitalize
         style={styles.title}
       >
         {listTitle}
@@ -67,13 +68,12 @@ export const PhotosList = () => {
 }
 
 const styles = StyleSheet.create({
-  view: {
+  wrapper: {
     flex: 1,
     backgroundColor: colors.primary,
     padding: 20
   },
   title: {
-    textTransform: 'capitalize',
     textShadowColor: '#0007',
     textShadowOffset: {width: -1, height: 2},
     textShadowRadius: 10

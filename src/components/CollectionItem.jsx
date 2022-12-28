@@ -23,7 +23,7 @@ export const CollectionItem = ({ item }) => {
         <StyledText
           regular
           kalamRegular
-          style={styles.titleCollection}
+          capitalize
         >
           {item}
         </StyledText>
@@ -37,8 +37,5 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 10
-  },
-  titleCollection: {
-    textTransform: 'capitalize'
   }
 })
